@@ -1,54 +1,70 @@
-// ------------- FILE HEADER -------------
-// Author ✅: 
-// Assignment ✅:
-// Date ✅:
-// Citations: 
-
-
-// ------------- CODE -------------
+/******************************************************************************
+# Author:           Andy Joy
+# Assignment:       Midterm
+# Date:             10/21/2026
+# Description:      This program
+#                   
+# Input:            
+# Output:           
+# Sources:          
+#******************************************************************************/
 #include <iostream>
 
 using namespace std;
 
-// Function prototypes (if any)
+int enqueue(int queue[], int &size, int val);
+int dequeue(int queue[], int &size, int &val);
+void printQueue(int queue[], int size);
 
+const int MAX = 3; // maximum size of queue
 
-// Main function
-// https://en.cppreference.com/w/cpp/language/main_function.html
 int main() {
-  cout << "Hello, World!" << endl;
+  int queue[MAX]; // integer array for queue
+  int size = 0;   // contains number of elements in queue
+  char option = ' ';
+
+  cout << "Welcome to the FIFO Queue Program!" << endl;
+  cin >> option;
+  option = tolower(option);
+
+  while (option != 'q') {
+    if (option == '+') {
+      cout << "Add" << endl;
+      printQueue(queue, size);
+    }
+
+    else if (option == '-') {
+      cout << "Remove" << endl;
+      printQueue(queue, size);
+    }
+
+    else if (option == 'p') {
+      printQueue(queue, size);
+    }
+  } 
+  cout << "\nGoodbye!" << endl;
   return 0;
 }
 
-// Function implementations (if any)
+int enqueue(int queue[], int &size, int val){
+  
+// add your code here
+    
+}
 
+int dequeue(int queue[], int &size, int &val){
 
-// ------------- DESIGN -------------
-/* 
-Program Name:
+// add your code here
+}
 
-Program Description:
-
-Design:
-A. INPUT
-Define the input variables including name data type. 
-
-B. OUTPUT
-Define the output variables including data types. 
-
-C. CALCULATIONS
-Describe calculations used by algorithms in step D.  
-List all formulas. 
-If there are no calculations needed, state there are no calculations.
-
-D. LOGIC and ALGORITHMS
-Design the logic of your program using pseudocode or flowcharts. 
-Use conditionals, loops, functions or array constructs.
-List the steps in transforming inputs into outputs. 
-https://github.com/Glen-Sasek-PCC-Instructor/2025-06-22/blob/main/Pseudocode-Reference.txt
-
-
-SAMPLE RUNS
-Copy from assignment document.
-
-*/
+// Call this function to print the queue
+void printQueue(int queue[], int size){
+  cout << "[";
+  for (int i = 0; i < size; i++){
+    cout << queue[i];
+      
+    if (i != size - 1)
+      cout << ", " ;
+  }
+  cout << "]" << endl;
+}
