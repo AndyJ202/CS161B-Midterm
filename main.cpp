@@ -2,11 +2,13 @@
 # Author:           Andy Joy
 # Assignment:       Midterm
 # Date:             10/21/2026
-# Description:      This program
-#                   
-# Input:            
-# Output:           
-# Sources:          
+# Description:      This program allows the user four options when opening the 
+#                   program; + (enqueuing), - (dequeuing), p (print queue), or 
+#                   q (quit program). The program can take up to 3 integers 
+#                   from the user. Then the user may deque any within the list.
+# Input:            option (char), and tempNum (integer).
+# Output:           queue (integer array).
+# Sources:          N/A
 #******************************************************************************/
 #include <iostream>
 
@@ -44,11 +46,11 @@ int main() {
   cin.ignore(10, '\n');
 
   while (option != 'q') {
-    if (option == '+') {
+    if (option == '+') { //add integer option
       cout << "Integer: ";
       cin >> tempNum;
 
-      while (!cin || (tempNum < 0)) {
+      while (!cin) {
         cout << "Invalid input! Please try again!!" << endl;
         cin.clear();
         cin.ignore(100, '\n');
@@ -63,11 +65,11 @@ int main() {
       printQueue(queue, size);
     }
 
-    else if (option == '-') {
+    else if (option == '-') { //remove integer(s) option
       cout << "Integer: ";
       cin >> tempNum;
 
-      while (!cin || (tempNum < 0)) {
+      while (!cin) {
         cout << "Invalid input! Please try again!!" << endl;
         cin.clear();
         cin.ignore(100, '\n');
@@ -76,13 +78,25 @@ int main() {
       }
       cin.ignore(10, '\n');
 
-      if (dequeue(queue, size, tempNum) == 1) {
+      int searchCount = 0;
+      bool tempNumFound = false;
+
+      while (tempNumFound == false && searchCount < MAX) { //loop to check if tempNum is in array
+        if (queue[searchCount] == tempNum) {
+          tempNumFound = true;
+        }
+        searchCount++;
+      }
+      if (tempNumFound == false) {
+        cout << tempNum << " is not in the queue." << endl;
+      }
+      else if (dequeue(queue, size, tempNum) == 1) {
         cout << "Queue Empty." << endl;
       }
       printQueue(queue, size);
     }
 
-    else if (option == 'p') {
+    else if (option == 'p') { //print option
       printQueue(queue, size);
     }
     cout << "\nEnter option: ";
@@ -124,7 +138,7 @@ int dequeue(int queue[], int &size, int &val){
   int searchCount = 0;
 
   if (size > 0) {
-    while (dequeueIndex == -1) { //loop to find first index of val
+    while (dequeueIndex == -1 && searchCount < MAX) { //loop to find first index of val
       if (queue[searchCount] == val) {
         dequeueIndex = searchCount + 1;
       }
